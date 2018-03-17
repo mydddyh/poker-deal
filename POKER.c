@@ -3,32 +3,32 @@
 #include<stdlib.h>
 #include<time.h>
 #include<math.h>
-#define NUM 5//ÆË¿ËÊı 
-#define NUMPOINT 13//µãÊı×î´óÖµ 
-#define NUMSITUATION 8//ÆË¿ËĞèÒª±»ÅĞ¶¨Çé¿öµÄ×ÜÊı 
-#define END 9//ÊäÈëÓÃ 
-#define INTRODUCTION -1//ÊäÈëÓÃ£¬²é¿´°ïÖú 
-#define NUMPROBABILITY 255//¸ÅÂÊ³¢ÊÔÊı
-#define NUMPROBABILITYFLOAT 255.0//¼ÆËã¸ÅÂÊÓÃ 
-#define PROBABILITY -2//ÊäÈëÓÃ£¬½øÈë¼ÆËã¸ÅÂÊÄ£Ê½
-#define SHOWDETAIL 1//Õ¹Ê¾Ï¸½Ú
-#define NOTSHOWDETAIL 0//²»Õ¹Ê¾Ï¸½Ú 
-typedef enum{//»¨É«Ã¶¾Ù  Ïàµ±ÓÚconst int 
-	HEART,//ºìÌÒ 
-	SPADE,//ºÚÌÒ 
-	CLUB,//Ã·»¨ 
-	DIAMOND,//·½¿é
-	NUMGRAPH, //»¨É«ÖÖÀà×ÜÊı 4
-}graph;//Í¼ĞÎ 
+#define NUM 5//æ‰‘å…‹æ•° 
+#define NUMPOINT 13//ç‚¹æ•°æœ€å¤§å€¼ 
+#define NUMSITUATION 8//æ‰‘å…‹éœ€è¦è¢«åˆ¤å®šæƒ…å†µçš„æ€»æ•° 
+#define END 9//è¾“å…¥ç”¨ 
+#define INTRODUCTION -1//è¾“å…¥ç”¨ï¼ŒæŸ¥çœ‹å¸®åŠ© 
+#define NUMPROBABILITY 255//æ¦‚ç‡å°è¯•æ•°
+#define NUMPROBABILITYFLOAT 255.0//è®¡ç®—æ¦‚ç‡ç”¨ 
+#define PROBABILITY -2//è¾“å…¥ç”¨ï¼Œè¿›å…¥è®¡ç®—æ¦‚ç‡æ¨¡å¼
+#define SHOWDETAIL 1//å±•ç¤ºç»†èŠ‚
+#define NOTSHOWDETAIL 0//ä¸å±•ç¤ºç»†èŠ‚ 
+typedef enum{//èŠ±è‰²æšä¸¾  ç›¸å½“äºconst int 
+	HEART,//çº¢æ¡ƒ 
+	SPADE,//é»‘æ¡ƒ 
+	CLUB,//æ¢…èŠ± 
+	DIAMOND,//æ–¹å—
+	NUMGRAPH, //èŠ±è‰²ç§ç±»æ€»æ•° 4
+}graph;//å›¾å½¢ 
 
-typedef struct{//ÆË¿Ë
-	graph flower;//»¨É« 
-	int point;//µãÊı 
+typedef struct{//æ‰‘å…‹
+	graph flower;//èŠ±è‰² 
+	int point;//ç‚¹æ•° 
 }card; 
 
-card c[NUM];//ÆË¿ËÊı×é 
+card c[NUM];//æ‰‘å…‹æ•°ç»„ 
 
-void Newcard(void)//·Ö·¢ĞÂÅÆ 
+void Newcard(void)//åˆ†å‘æ–°ç‰Œ 
 {
 	if(c==NULL)
 	{
@@ -37,15 +37,15 @@ void Newcard(void)//·Ö·¢ĞÂÅÆ
 	else
 	{
 		int i,j;
-		//static int used=1; //ÖØÖÃËæ»úÊıÖÖ×ÓÓÃ
-		//srand((unsigned int)time(0)*(used++));//ÖØ¸´ÖØÖÃËæ»úÊıÖÖ×Ó 
+		//static int used=1; //é‡ç½®éšæœºæ•°ç§å­ç”¨
+		//srand((unsigned int)time(0)*(used++));//é‡å¤é‡ç½®éšæœºæ•°ç§å­ 
 		for(i=0;i<NUM;i++)
 		{
-			c[i].flower=rand()%NUMGRAPH;//Éú³ÉËæ»ú»¨É« 0~3
-			c[i].point=rand()%NUMPOINT+1;//Éú³ÉËæ»úµãÊı 1~13
+			c[i].flower=rand()%NUMGRAPH;//ç”ŸæˆéšæœºèŠ±è‰² 0~3
+			c[i].point=rand()%NUMPOINT+1;//ç”Ÿæˆéšæœºç‚¹æ•° 1~13
 			for(j=0;j<i;j++)
 				if((c[i].flower==c[j].flower)&&(c[i].point==c[j].point))
-				//ÅĞ¶ÏÆË¿ËÊÇ·ñÖØ¸´ 
+				//åˆ¤æ–­æ‰‘å…‹æ˜¯å¦é‡å¤ 
 				{
 					i--;
 					break;
@@ -54,7 +54,7 @@ void Newcard(void)//·Ö·¢ĞÂÅÆ
 	}
 }
 
-int Outputcard(void)//Êä³öÆË¿ËÑùÊ½ 
+int Outputcard(void)//è¾“å‡ºæ‰‘å…‹æ ·å¼ 
 {
 	int ret; 
 	if(c==NULL)
@@ -69,22 +69,22 @@ int Outputcard(void)//Êä³öÆË¿ËÑùÊ½
 		                            "  spade",
 									"   club",
 									"diamond",};
-									//ÓÃ¿Õ¸ñ½«»¨É«¶ÔÆë 
+									//ç”¨ç©ºæ ¼å°†èŠ±è‰²å¯¹é½ 
 		for(i=0;i<NUM;i++)
 		{
 			printf("CARD%d:%s%3d\n",
 			i+1,graphnames[c[i].flower],c[i].point);
-			//Êä³öÆË¿Ë 
+			//è¾“å‡ºæ‰‘å…‹ 
 		}
 		ret=1;
 	}
 	return ret;
 }
 
-int Judgeflushorstraight(int* poi,int* flo,int flag)//ÅĞ¶ÏÁ¬×ÓºÍÍ¬»¨Ë³ 
+int Judgeflushorstraight(int* poi,int* flo,int flag)//åˆ¤æ–­è¿å­å’ŒåŒèŠ±é¡º 
 {
 	int ret; 
-	if(c==NULL||poi==NULL||flo==NULL||flag!=-1)//Ã¿´ÎAnalyze¶¼³õÊ¼flagÎª-1 
+	if(c==NULL||poi==NULL||flo==NULL||flag!=-1)//æ¯æ¬¡Analyzeéƒ½åˆå§‹flagä¸º-1 
 	{
 		printf("error\n");
 		ret=-1;
@@ -92,10 +92,10 @@ int Judgeflushorstraight(int* poi,int* flo,int flag)//ÅĞ¶ÏÁ¬×ÓºÍÍ¬»¨Ë³
 	else
 	{
 		int i;
-		int cou=0;//¼ÆÊıÓÃ 
+		int cou=0;//è®¡æ•°ç”¨ 
 		for(i=0;i<NUMPOINT-1;i++)
 		{
-			if(poi[i]==1&&poi[i+1]==1)//¼ì²éµãÊıÊÇ·ñÁ¬Ğø 
+			if(poi[i]==1&&poi[i+1]==1)//æ£€æŸ¥ç‚¹æ•°æ˜¯å¦è¿ç»­ 
 			{
 				cou++;				
 			}
@@ -103,23 +103,23 @@ int Judgeflushorstraight(int* poi,int* flo,int flag)//ÅĞ¶ÏÁ¬×ÓºÍÍ¬»¨Ë³
 			{
 				cou=0;
 			}
-			if(cou==NUM-1)//NUMÎª5
+			if(cou==NUM-1)//NUMä¸º5
 			{
 				break;
 			}
 		}
-		for(i=0;i<NUMGRAPH;i++)//¼ì²é»¨É«ÊÇ·ñÏàÍ¬ 
+		for(i=0;i<NUMGRAPH;i++)//æ£€æŸ¥èŠ±è‰²æ˜¯å¦ç›¸åŒ 
 		{
 			if(flo[i]==NUM) 
 			{
-				break;//ÍË³öÊ±iÎªÏàÍ¬»¨É«¶ÔÓ¦ÏÂ±ê 
+				break;//é€€å‡ºæ—¶iä¸ºç›¸åŒèŠ±è‰²å¯¹åº”ä¸‹æ ‡ 
 			}
 		}										  
-		if(i<NUMGRAPH&&cou==NUM-1)//ÌáÇ°ÍË³öÔòÎåÕÅ»¨É«ÏàÍ¬£¬ÇÒµãÊıÁ¬Ğø 
+		if(i<NUMGRAPH&&cou==NUM-1)//æå‰é€€å‡ºåˆ™äº”å¼ èŠ±è‰²ç›¸åŒï¼Œä¸”ç‚¹æ•°è¿ç»­ 
 		{
-			ret=2;//Í¬»¨Ë³ 
+			ret=2;//åŒèŠ±é¡º 
 		}
-		else if(i==NUMGRAPH&&cou==NUM-1)//µãÊıÁ¬Ğøµ«»¨É«²»Í¬ 
+		else if(i==NUMGRAPH&&cou==NUM-1)//ç‚¹æ•°è¿ç»­ä½†èŠ±è‰²ä¸åŒ 
 		{
 			ret=1;
 		}
@@ -128,10 +128,10 @@ int Judgeflushorstraight(int* poi,int* flo,int flag)//ÅĞ¶ÏÁ¬×ÓºÍÍ¬»¨Ë³
 			ret=0;
 		}
 	}
-	return ret;//µ¥Ò»³ö¿Ú 
+	return ret;//å•ä¸€å‡ºå£ 
 }
 
-char *Analyze(int* pflag,char** sit)//·ÖÎöÆË¿Ë×éºÏÀàĞÍ 
+char *Analyze(int* pflag,char** sit)//åˆ†ææ‰‘å…‹ç»„åˆç±»å‹ 
 {
 	if(c==NULL||pflag==NULL||sit==NULL)
 	{
@@ -144,7 +144,7 @@ char *Analyze(int* pflag,char** sit)//·ÖÎöÆË¿Ë×éºÏÀàĞÍ
 		int i=0;
 		int poi[NUMPOINT]={0};
 		int flo[NUMGRAPH]={0};
-		for(i=0;i<NUM;i++)//·Ö±ğÍ³¼ÆÃ¿ÖÖµãÊıºÍ»¨É«³öÏÖ¸öÊı 
+		for(i=0;i<NUM;i++)//åˆ†åˆ«ç»Ÿè®¡æ¯ç§ç‚¹æ•°å’ŒèŠ±è‰²å‡ºç°ä¸ªæ•° 
 		{
 			poi[c[i].point-1]++;
 			flo[c[i].flower]++;		
@@ -152,7 +152,7 @@ char *Analyze(int* pflag,char** sit)//·ÖÎöÆË¿Ë×éºÏÀàĞÍ
 		int pointmax=0;
 		int pointnexmax=0;
 		int graphmax=0;
-		int graphnexmax=0;//Í³¼Æ³öÏÖ´ÎÊı×î´óºÍ´Î´óµÄÏÂ±ê
+		int graphnexmax=0;//ç»Ÿè®¡å‡ºç°æ¬¡æ•°æœ€å¤§å’Œæ¬¡å¤§çš„ä¸‹æ ‡
 		int tem1;
 		int tem2;	
 		for(i=1;i<NUMPOINT;i++)
@@ -169,7 +169,7 @@ char *Analyze(int* pflag,char** sit)//·ÖÎöÆË¿Ë×éºÏÀàĞÍ
 		tem2=flo[graphmax];
 		poi[pointmax]=0;
 		flo[graphmax]=0;
-		//ÔİÊ±Ä¨È¥×î´óÖµ£¬·½±ãÇó´Î´óÖµÎ»ÖÃ 
+		//æš‚æ—¶æŠ¹å»æœ€å¤§å€¼ï¼Œæ–¹ä¾¿æ±‚æ¬¡å¤§å€¼ä½ç½® 
 		for(i=1;i<NUMPOINT;i++)
 		{
 			if(poi[i]>poi[pointnexmax])
@@ -183,46 +183,46 @@ char *Analyze(int* pflag,char** sit)//·ÖÎöÆË¿Ë×éºÏÀàĞÍ
 		poi[pointmax]=tem1;
 		flo[graphmax]=tem2;
 		//printf("pointnexmax=%d\npointmax=%d\ngraphnexmax=%d\ngraphmax=%d\n",pointnexmax,pointmax,graphnexmax,graphmax);	
-		if(poi[pointmax]==4)//ËÄÕ¨four
+		if(poi[pointmax]==4)//å››ç‚¸four
 		{
 			*pflag=0;
 		}
-		else if(poi[pointmax]==3&&poi[pointnexmax]==2)//ÈıÍÏ¶şfull_house
+		else if(poi[pointmax]==3&&poi[pointnexmax]==2)//ä¸‰æ‹–äºŒfull_house
 		{
 			*pflag=1;
 		}
-		else if(poi[pointmax]==3&&poi[pointnexmax]==1)//ÈıÕ¨three
+		else if(poi[pointmax]==3&&poi[pointnexmax]==1)//ä¸‰ç‚¸three
 		{
 			*pflag=2;
 		}
-		else if(poi[pointmax]==2&&poi[pointnexmax]==2)//Á½¶Ôtwo_paires
+		else if(poi[pointmax]==2&&poi[pointnexmax]==2)//ä¸¤å¯¹two_paires
 		{
 			*pflag=3;
 		}
-		else if(poi[pointmax]==2&&poi[pointnexmax]==1)//Ò»¶Ôpair
+		else if(poi[pointmax]==2&&poi[pointnexmax]==1)//ä¸€å¯¹pair
 		{
 			*pflag=4;
 		}
-		else if(Judgeflushorstraight(poi,flo,*pflag)==2)//Í¬»¨Ë³flush
+		else if(Judgeflushorstraight(poi,flo,*pflag)==2)//åŒèŠ±é¡ºflush
 		{
 			*pflag=5;
 		}
-		else if(Judgeflushorstraight(poi,flo,*pflag)==1)//Ë³×Óstraight
+		else if(Judgeflushorstraight(poi,flo,*pflag)==1)//é¡ºå­straight
 		{
 			*pflag=6;
 		}
-		else//ÎŞÌØÊâÅÅÁĞnormal 
+		else//æ— ç‰¹æ®Šæ’åˆ—normal 
 		{
 			*pflag=7;
 		}
 		return sit[*pflag];
-		//°´ÕÕÌâÄ¿ÒªÇó·µ»Ø±íÊ¾Çé¿öÅĞ¶Ï½áÂÛµÄ×Ö·ûµÄµØÖ· £¬Ò²¿ÉÒÔÖ±½Ó·µ»ØflagµÄÖµ 
+		//æŒ‰ç…§é¢˜ç›®è¦æ±‚è¿”å›è¡¨ç¤ºæƒ…å†µåˆ¤æ–­ç»“è®ºçš„å­—ç¬¦çš„åœ°å€ ï¼Œä¹Ÿå¯ä»¥ç›´æ¥è¿”å›flagçš„å€¼ 
 	}
 	
 }
 
 long int Gountil(int enter,int* pflag,char** sit,int detail)
-//ÑéÖ¤ÆË¿ËÖ±µ½Âú×ãÄ³Ò»Çé¿öÔÙÊä³ö,·µ»Ø³¢ÊÔ´ÎÊı 
+//éªŒè¯æ‰‘å…‹ç›´åˆ°æ»¡è¶³æŸä¸€æƒ…å†µå†è¾“å‡º,è¿”å›å°è¯•æ¬¡æ•° 
 {
 	long int ret;
 	if(c==NULL||enter<INTRODUCTION||enter>END||pflag==NULL||sit==NULL)
@@ -232,12 +232,12 @@ long int Gountil(int enter,int* pflag,char** sit,int detail)
 	}
 	else
 	{
-		long int i=1;//Ñ­»·´ÎÊı 
-		int power=0;//Ãİ´Î£¬·½±ãÊä³ö 
+		long int i=1;//å¾ªç¯æ¬¡æ•° 
+		int power=0;//å¹‚æ¬¡ï¼Œæ–¹ä¾¿è¾“å‡º 
 		int maxi=0;
 		int tempflag=0;
 		char* analyzeresult=0;
-		while(++power<10)//´Ë´¦10ÎŞÌØÊâÒâÒå£¬½Ï´ó¼´¿É 
+		while(++power<10)//æ­¤å¤„10æ— ç‰¹æ®Šæ„ä¹‰ï¼Œè¾ƒå¤§å³å¯ 
 		{
 			maxi=pow(10,power);
 			for(;i<=10*maxi;i++)
@@ -249,20 +249,20 @@ long int Gountil(int enter,int* pflag,char** sit,int detail)
 				Newcard();
 				//Outputcard();
 				analyzeresult=Analyze(pflag,sit);
-				if(analyzeresult==sit[enter])//ÅĞ¶ÏÊÇ·ñ·ûºÏÒªÇó 
+				if(analyzeresult==sit[enter])//åˆ¤æ–­æ˜¯å¦ç¬¦åˆè¦æ±‚ 
 				{
 					tempflag=1;
 					break;
 				}
 			}
-			if(tempflag&&detail)//Êä³öµÄÅĞ¶Ï 
+			if(tempflag&&detail)//è¾“å‡ºçš„åˆ¤æ–­ 
 			{
 				printf("Case %ld:\n",i);
 				Outputcard();
 				printf("Now it is the %s.\n",analyzeresult);
-				//printf("\a");//ÏìÁå 
+				//printf("\a");//å“é“ƒ 
 			}
-			if(tempflag)//ÅĞ¶ÏÍË³ö 
+			if(tempflag)//åˆ¤æ–­é€€å‡º 
 			{
 				break;
 			}			
@@ -280,7 +280,7 @@ void Printintroduction(char** sit)
 	printf("Enter %d to see the introduction again.\n",INTRODUCTION);
 	for(i=0;i<NUMSITUATION;i++)
 	{
-		printf("Enter %2d to run until find the %s.\n",i,sit[i]);//Êä³öÅĞ¶¨²¿·Ö¹æÔò 
+		printf("Enter %2d to run until find the %s.\n",i,sit[i]);//è¾“å‡ºåˆ¤å®šéƒ¨åˆ†è§„åˆ™ 
 	}
 	printf("Enter %2d to continue.\n",NUMSITUATION);			
 	printf("Enter %2d to end.\n",END);
@@ -294,13 +294,13 @@ void Probability(int* pflag,char** sit)
 	}
 	else
 	{
-		int enter=-1;//±£Ö¤½øÈëÏÂÒ»¸öwhile 
+		int enter=-1;//ä¿è¯è¿›å…¥ä¸‹ä¸€ä¸ªwhile 
 		printf("Now it is trying %d times to estimate the probability of a situation.\n",NUMPROBABILITY);
-		while((enter<0)||(enter>7))//ÌŞ³ı²»·ûºÏÒªÇóµÄÊäÈë 
+		while((enter<0)||(enter>7))//å‰”é™¤ä¸ç¬¦åˆè¦æ±‚çš„è¾“å…¥ 
 		{
 		 	printf("Please enter a number between 0 and 7.\n");
 			scanf("%d",&enter);
-			getchar();//ÖØÒª ÌŞ³ı·Ç×ÖÄ¸ÊäÈë 
+			getchar();//é‡è¦ å‰”é™¤éå­—æ¯è¾“å…¥ 
 		}
 		long long int sum=0;
 		int temp=0;
@@ -310,7 +310,7 @@ void Probability(int* pflag,char** sit)
 		{
 			printf("%6lld ",temp=Gountil(enter,pflag,sit,NOTSHOWDETAIL));
 			sum+=temp;
-			if((i+1)%12==0&&i>0)//Ã¿Ê®¶ş´Î»»ĞĞ 
+			if((i+1)%12==0&&i>0)//æ¯åäºŒæ¬¡æ¢è¡Œ 
 			{
 				printf("\n");
 			} 
@@ -325,14 +325,14 @@ void Probability(int* pflag,char** sit)
 int main(void)
 {
 	extern card c[];
-	int enter=-2;//ÊäÈë 
+	int enter=-2;//è¾“å…¥ 
 	int flag=0;
 	int i=0;
 	char *sit[NUMSITUATION]={"four","full_house",
                              "three","two_paires",
 							 "pair","flush",
 							 "straight","normal",};
-	//¶ş¼¶Ö¸Õë,°´ÌâÄ¿ÒªÇóÃ»ÓĞÉè³ÉÈ«¾Ö±äÁ¿ 
+	//äºŒçº§æŒ‡é’ˆ,æŒ‰é¢˜ç›®è¦æ±‚æ²¡æœ‰è®¾æˆå…¨å±€å˜é‡ 
 	srand(time(0));
 	printf("Hello!This is a program which can simulate dealing pokers.\n");
 	while(enter!=END)
@@ -340,13 +340,13 @@ int main(void)
 		enter=PROBABILITY-1;
 		flag=0; 
 		while((enter<PROBABILITY)||(enter>END))
-		//ÌŞ³ı²»·ûºÏÒªÇóµÄÊäÈë 
+		//å‰”é™¤ä¸ç¬¦åˆè¦æ±‚çš„è¾“å…¥ 
 		{
 			printf("\nEnter %d to continue,",NUMSITUATION);
 			printf("enter %d to end,",END);
 			printf("or enter %d to see the introduction.\n",INTRODUCTION);
 			scanf("%d",&enter);
-			getchar();//ÖØÒª ÌŞ³ı·ÇÊı×ÖÊäÈë 
+			getchar();//é‡è¦ å‰”é™¤éæ•°å­—è¾“å…¥ 
 		}
 		switch(enter)
 		{
@@ -376,3 +376,5 @@ int main(void)
 	}	
 	return 0;
 }
+
+/*mydddyh*/
